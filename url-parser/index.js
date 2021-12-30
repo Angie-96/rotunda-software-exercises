@@ -15,31 +15,42 @@ function displayResult(event) {
 }
 
 function parseVariables(urlFormatString, urlInstance) {
-  let result = {};
-
-  const varRegex = /(?<=\:)([^/]+)(?=\/*)/gi;
   const paramRegex = /([a-zA-Z]+=[a-zA-Z0-9]+)/g;
-  const urlInstanceRegex = /(?<=\/)(?!api\b)[\w-]+/g;
+  const varRegex = /(?<=\/)[\w:-]+/g;
 
   const varKeys = urlFormatString.match(varRegex);
-  const varValues = urlInstance.match(urlInstanceRegex);
+  const varValues = urlInstance.match(varRegex);
 
-  const convertToObj = (keys, values) => {
-    if (
-      keys.length != values.length ||
-      keys.length == 0 ||
-      values.length == 0
-    ) {
-      return {};
+  const getVarObj = () => {
+    if (varKeys?.length !== varValues?.length) {
+      return {
+        error:
+          "The number of variables and their values do not match or there are none",
+      };
     }
 
-    return Object.assign(...keys.map((k, i) => ({ [k]: values[i] })));
+    return varKeys.reduce((acc, varKey, i) => {
+      if (varKey.startsWith(":")) {
+        return { ...acc, [varKey.substring(1)]: varValues[i] };
+      }
+      return acc;
+    }, {});
   };
 
-  result = convertToObj(varKeys, varValues);
+  let resultVars = getVarObj();
 
   const paramsKeys = urlInstance.match(paramRegex);
-  paramsKeys.forEach((el) => (result[el.split("=")[0]] = el.split("=")[1]));
 
-  return JSON.stringify(result, undefined, 4);
+  const getParamsObj = () => {
+    return paramsKeys?.reduce((acc, paramKey) => {
+      const paramKeyValue = paramKey.split("=");
+      return { ...acc, [paramKeyValue[0]]: paramKeyValue[1] };
+    }, {});
+  };
+
+  let resultParams = getParamsObj();
+
+  const result = { ...resultVars, ...resultParams };
+
+  return JSON.stringify(result, null, 4);
 }
