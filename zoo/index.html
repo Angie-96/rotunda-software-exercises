@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZOO Exercise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Vollkorn:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>ZOO Exercise</h1>
+    </header>
+    <div>
+      <form>
+        <div class="input-group">
+          <label
+            >Message:
+            <input
+              type="text"
+              id="formatString"
+              name="formatString"
+              placeholder="What are the animals saying?"
+              required
+          /></label>
+        </div>
+        <div class="input-group animals">
+          <div class="container">
+            <div class="animal">
+              <label for="lion">
+                <input id="lion" type="checkbox" name="lion" />
+                <div class="animal-box">
+                  <img src="./assets/lion.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="animal">
+              <label for="tiger">
+                <input id="tiger" type="checkbox" name="tiger" />
+                <div class="animal-box">
+                  <img src="./assets/tiger.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="animal">
+              <label for="monkey">
+                <input id="monkey" type="checkbox" name="monkey" />
+                <div class="animal-box">
+                  <img src="./assets/monkey.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="animal">
+              <label for="snake">
+                <input id="snake" type="checkbox" name="snake" />
+                <div class="animal-box">
+                  <img src="./assets/snake.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="animal">
+              <label for="owl">
+                <input id="owl" type="checkbox" name="owl" />
+                <div class="animal-box">
+                  <img src="./assets/owl.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="animal">
+              <label for="cow">
+                <input id="cow" type="checkbox" name="cow" />
+                <div class="animal-box">
+                  <img src="./assets/cow.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="animal">
+              <label for="pig">
+                <input id="pig" type="checkbox" name="pig" />
+                <div class="animal-box">
+                  <img src="./assets/pig.png" alt="" draggable="false" />
+                </div>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="submit">
+          <button type="submit">Process</button>
+        </div>
+      </form>
+      <div class="result"></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
