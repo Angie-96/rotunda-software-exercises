@@ -29,7 +29,7 @@ function parseURL(urlFormatString, urlInstance) {
       };
     }
 
-    return varKeys.reduce((acc, varKey, i) => {
+    return varKeys?.reduce((acc, varKey, i) => {
       if (varKey.startsWith(":")) {
         return { ...acc, [varKey.substring(1)]: varValues[i] };
       }
