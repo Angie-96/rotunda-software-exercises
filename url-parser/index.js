@@ -8,20 +8,20 @@ function displayResult(event) {
   const urlFormatString = document.getElementById("formatString").value;
   const urlInstance = document.getElementById("urlInstance").value;
 
-  resultElem.textContent = parseVariables(urlFormatString, urlInstance);
+  resultElem.textContent = parseURL(urlFormatString, urlInstance);
   resultContainer.style.opacity = 1;
 
   event.preventDefault();
 }
 
-function parseVariables(urlFormatString, urlInstance) {
+function parseURL(urlFormatString, urlInstance) {
   const paramRegex = /([a-zA-Z]+=[a-zA-Z0-9]+)/g;
   const varRegex = /(?<=\/)[\w:-]+/g;
 
   const varKeys = urlFormatString.match(varRegex);
   const varValues = urlInstance.match(varRegex);
 
-  const getVarObj = () => {
+  const parseVariables = () => {
     if (varKeys?.length !== varValues?.length) {
       return {
         error:
@@ -37,20 +37,18 @@ function parseVariables(urlFormatString, urlInstance) {
     }, {});
   };
 
-  let resultVars = getVarObj();
+  let resultVars = parseVariables();
 
   const paramsKeys = urlInstance.match(paramRegex);
 
-  const getParamsObj = () => {
+  const parseParams = () => {
     return paramsKeys?.reduce((acc, paramKey) => {
       const paramKeyValue = paramKey.split("=");
       return { ...acc, [paramKeyValue[0]]: paramKeyValue[1] };
     }, {});
   };
 
-  let resultParams = getParamsObj();
+  let resultParams = parseParams();
 
-  const result = { ...resultVars, ...resultParams };
-
-  return JSON.stringify(result, null, 4);
+  return JSON.stringify({ ...resultVars, ...resultParams }, null, 4);
 }
