@@ -41,6 +41,10 @@ form {
   text-align: center;
 }
 
+.input-group input::placeholder {
+  color: rgb(58, 58, 58);
+}
+
 .input-group.animals {
   margin-top: 50px;
 }
