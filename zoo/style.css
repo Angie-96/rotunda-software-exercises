@@ -110,8 +110,8 @@ form {
 }
 
 .input-group.animals .animal .checkmark:after {
-  border-width: 0 6px 6px 0;
   border: solid #d5573b;
+  border-width: 0 6px 6px 0;
   height: 15px;
   right: -1px;
   top: -6px;
