@@ -15,11 +15,20 @@ function displayResult(event) {
 }
 
 function parseURL(urlFormatString, urlInstance) {
-  const paramRegex = /([a-zA-Z]+=[a-zA-Z0-9]+)/g;
-  const varRegex = /(?<=\/)[\w:-]+/g;
+  const getVariables = (str) => {
+    const StrWithoutParams = str.split("?")[0];
+    return StrWithoutParams?.split("/").slice(1);
+  };
 
-  const varKeys = urlFormatString.match(varRegex);
-  const varValues = urlInstance.match(varRegex);
+  const getParams = (str) => {
+    const paramsStr = str.split("?")[1];
+    return paramsStr?.split("&");
+  };
+
+  const varKeys = getVariables(urlFormatString);
+  const varValues = getVariables(urlInstance);
+
+  const paramsKeys = getParams(urlInstance);
 
   const parseVariables = () => {
     if (varKeys?.length !== varValues?.length) {
@@ -38,8 +47,6 @@ function parseURL(urlFormatString, urlInstance) {
   };
 
   let resultVars = parseVariables();
-
-  const paramsKeys = urlInstance.match(paramRegex);
 
   const parseParams = () => {
     return paramsKeys?.reduce((acc, paramKey) => {
