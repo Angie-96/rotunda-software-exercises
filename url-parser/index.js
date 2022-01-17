@@ -16,8 +16,8 @@ function displayResult(event) {
 
 function parseURL(urlFormatString, urlInstance) {
   const getVariables = (str) => {
-    const StrWithoutParams = str.split("?")[0];
-    return StrWithoutParams?.split("/").slice(1);
+    const strWithoutParams = str.split("?")[0];
+    return strWithoutParams?.split("/").slice(1);
   };
 
   const getParams = (str) => {
